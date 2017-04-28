@@ -27,6 +27,7 @@ import com.lans.vo.Tag;
 @WebServlet(urlPatterns="/pages/back/admin/goods/GoodServlet/*")
 public class GoodsServlet extends HttpServlet {
 	private static final String FORWARD = "/pages/plugins/forward.jsp";
+	private static final String ADD = "/pages/back/admin/goods/goods_add.jsp";
 	private static final String EDIT = "/pages/back/admin/goods/goods_edit.jsp";
 	private static final String LIST = "/pages/back/admin/goods/goods_list.jsp";
 	private SmartUpload smart ;
@@ -70,6 +71,20 @@ public class GoodsServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+	public String addPre(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		IGoodsService goodsService = Factory.getServiceInstance("goods.service");
+		try {
+			Map<String, Object> map = goodsService.getAddPre();
+			List<Item> allItems = (List<Item>) map.get("allItems");
+			List<Tag> allTags = (List<Tag>) map.get("allTags");
+			request.setAttribute("allItems", allItems);
+			request.setAttribute("allTags", allTags);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return ADD;
+	}
+	
 	
 	public String add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Goods vo = new Goods();

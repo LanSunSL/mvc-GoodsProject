@@ -1,7 +1,5 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page import="com.lans.service.*" %>
-<%@ page import="com.lans.util.factory.*" %>
-<%@ page import="com.lans.vo.*" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
 <head>
@@ -21,21 +19,15 @@
 	href="bootstrap/css/bootstrap.min.css">
 </head>
 <%!
-	public static final String GOODS_LIST_URL = "pages/back/admin/goods/GoodsServletBack/list" ;
-	public static final String GOODS_ADD_DO_URL = "pages/back/admin/goods/GoodsServletBack/add" ;
+	public static final String GOODS_LIST_URL = "pages/back/admin/goods/GoodsAction!list.action" ;
+	public static final String GOODS_ADD_URL = "pages/back/admin/goods/GoodsAction!add.action" ;
 %>
-<%
-	request.setCharacterEncoding("UTF-8");
-	IGoodsService goodsService = Factory.getServiceInstance("goods.service");
-	Map<String, Object> map = goodsService.getAddPre();
-	List<Item> allItems = (List<Item>) map.get("allItems");
-	List<Tag> allTags = (List<Tag>) map.get("allTags");
-%>
+
 <body>
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
-				<form action="<%=GOODS_ADD_DO_URL%>" method="post" class="form-horizontal" id="goodsForm" enctype="multipart/form-data">
+				<form action="<%=GOODS_ADD_URL%>" method="post" class="form-horizontal" id="goodsForm" enctype="multipart/form-data">
 					<fieldset>
 						<legend>
 							<label>增加商品</label>
@@ -59,16 +51,9 @@
 							<div class="col-md-5">
 								<select id="item" name="item" class="form-control"> 
 									<option value="">========= 请选择商品所属分类 =========</option>	
-									
-									<%
-										Iterator<Item> itemIter = allItems.iterator();
-										while (itemIter.hasNext()) {
-											Item item = itemIter.next();
-									%>
-									<option value="<%=item.getIid()%>"><%=item.getTitle() %></option>	
-									<%
-										}
-									%>
+									<c:forEach items="${allItems}" var="myitem">
+										<option value="${myitem.iid}">${myitem.title}</option>	
+									</c:forEach>
 								</select>
 							</div>
 							<span class="col-md-5" id="itemSpan">*</span>
@@ -76,19 +61,13 @@
 						<div class="form-group" id="tagDiv">
 							<label class="col-md-2 control-label" for="tag">商品标签：</label>
 							<div class="col-md-5">
-							<%
-								Iterator<Tag> tagIter = allTags.iterator();
-								while (tagIter.hasNext()) {
-									Tag tag = tagIter.next();
-							%>
+							<c:forEach items="${allTags}" var="tag">
 								<div class="col-md-3">
 									<div class="checkbox">
-										<label><input type="checkbox" id="tag" name="tag" value="<%=tag.getTid()%>"><%=tag.getTitle()%></label>
+										<label><input type="checkbox" id="tag" name="tag" value="${tag.tid}">${tag.title}</label>
 									</div>
 								</div>
-							<%
-								}
-							%>
+							</c:forEach>
 							</div>
 							<span class="col-md-5" id="tagSpan">*</span>
 						</div>

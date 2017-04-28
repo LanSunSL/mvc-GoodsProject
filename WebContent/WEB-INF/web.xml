@@ -3,20 +3,13 @@
   <display-name>GoodsProject</display-name>
   <servlet>
   	<servlet-name>DispatcherServlet</servlet-name>
-  	<servlet-class>com.lans.util.servlet.GoodsServlet</servlet-class>
+  	<servlet-class>com.lans.util.servlet.DispatcherServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>DispatcherServlet</servlet-name>
   	<url-pattern>*.action</url-pattern>
   </servlet-mapping>
-  <servlet>
-  	<servlet-name>GoodsServlet</servlet-name>
-  	<servlet-class>com.lans.servlet.GoodsServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>GoodsServlet</servlet-name>
-  	<url-pattern>/pages/back/admin/goods/GoodsServletBack</url-pattern>
-  </servlet-mapping>
+ 
   <filter>
   	<filter-name>EncodingFilter</filter-name>
   	<filter-class>com.lans.filter.EncodingFilter</filter-class>

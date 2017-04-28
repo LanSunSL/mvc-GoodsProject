@@ -5,4 +5,5 @@ window.onload = function() {
 	listener("deleteBtn","click",function(){
 		handleDelete("gid",jsDeleteUrl) ;
 	}) ;
+	
 } 

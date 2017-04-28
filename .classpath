@@ -9,6 +9,10 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="D:/mylib/ojdbc6.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MyWebLib"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MyWebLib">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

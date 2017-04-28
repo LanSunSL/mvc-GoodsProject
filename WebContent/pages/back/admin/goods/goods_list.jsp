@@ -9,7 +9,7 @@
 %>
 <%!
 	public static final String GOODS_LIST_URL = "pages/back/admin/goods/GoodsServletBack/list";
-	public static final String GOODS_ADD_URL = "pages/back/admin/goods/goods_add.jsp" ;
+	public static final String GOODS_ADD_URL = "pages/back/admin/goods/GoodsAction!addPre.action" ;
 	public static final String GOODS_DELETE_URL = "pages/back/admin/goods/GoodsServletBack/delete" ;
 	public static final String GOODS_EDIT_URL = "pages/back/admin/goods/GoodsServletBack/editPre" ;
 %>
@@ -61,6 +61,9 @@
 			</table>
 			<button id="deleteBtn" class="btn btn-danger btn-lg">
 				<span class="glyphicon glyphicon-trash"></span>&nbsp;删除选中部信息
+			</button>
+			<button id="addBtn" class="btn btn-success btn-lg">
+				<a href="<%=GOODS_ADD_URL%>">&nbsp;增加新的商品</a>
 			</button>
 			<jsp:include page="/pages/plugins/split_plugin_page_bar.jsp">
 				<jsp:param name="url" value="<%=GOODS_LIST_URL%>"/>

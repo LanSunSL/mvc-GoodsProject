@@ -1,33 +1,31 @@
--- 删除数据表
-DROP TABLE item PURGE ;
-DROP TABLE tag PURGE ;
-DROP SEQUENCE goods_seq ;
+DROP DATABASE goods ;
+CREATE DATABASE goods CHARACTER SET UTF8 ;
+USE goods ;
 -- 创建数据表
 CREATE TABLE item(
-	iid			NUMBER ,
-	title		VARCHAR2(50) ,
+	iid			INT AUTO_INCREMENT ,
+	title		VARCHAR(50) ,
 	CONSTRAINT pk_iid PRIMARY KEY(iid)
-) ;
+) engine="innodb" ;
 CREATE TABLE tag(
-	tid			NUMBER ,
-	title		VARCHAR2(50) ,
+	tid			INT AUTO_INCREMENT ,
+	title		VARCHAR(50) ,
 	CONSTRAINT pk_tid PRIMARY KEY(tid)
-) ;
-CREATE SEQUENCE goods_seq ;
+) engine="innodb"  ;
 CREATE TABLE goods (
-	gid			NUMBER ,
-	name		VARCHAR2(50) ,
-	price		NUMBER ,
-	photo		VARCHAR2(100) ,
-	iid			NUMBER ,
-	CONSTRAINT pk_gid10 PRIMARY KEY(gid) ,
+	gid			INT ,
+	name		VARCHAR(50) ,
+	price		DOUBLE ,
+	photo		VARCHAR(100) ,
+	iid			INT ,
+	CONSTRAINT pk_gid PRIMARY KEY(gid) ,
 	CONSTRAINT fk_iid FOREIGN KEY(iid) REFERENCES item(iid)
-) ;
+) engine="innodb"  ;
 CREATE TABLE goods_tag(
-	gid			NUMBER , 
-	tid			NUMBER ,
-	CONSTRAINT fk_gid11 FOREIGN KEY(gid) REFERENCES goods(gid) ON DELETE CASCADE ,
-	CONSTRAINT fk_tid11 FOREIGN KEY(tid) REFERENCES tag(tid)
+	gid			INT , 
+	tid			INT ,
+	CONSTRAINT fk_gid FOREIGN KEY(gid) REFERENCES goods(gid) ON DELETE CASCADE ,
+	CONSTRAINT fk_tid FOREIGN KEY(tid) REFERENCES tag(tid)
 ) ;
 -- 测试数据
 INSERT INTO item(iid,title) VALUES (1,'图书音像') ;

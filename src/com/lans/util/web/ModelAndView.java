@@ -29,10 +29,5 @@ public class ModelAndView {
 		for (Map.Entry<String, Object> entry : map.entrySet()) {
 			ServletContextApplicationUtil.getRequest().setAttribute(entry.getKey(), entry.getValue());
 		}
-//		Iterator<Map.Entry<String, Object>> iter = map.entrySet().iterator();
-//		while (iter.hasNext()) {
-//			Map.Entry<String, Object> entry = iter.next();
-//			ServletContextApplicationUtil.getRequest().setAttribute(entry.getKey(), entry.getValue());
-//		}
 	}
 }

@@ -13,7 +13,7 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 
 	@Override
 	public boolean doCreate(Goods vo) throws SQLException {
-		String sql = "INSERT INTO goods (gid,name,price,photo,iid) VALUES(goods_seq.nextval,?,?,?,?)";
+		String sql = "INSERT INTO goods (name,price,photo,iid) VALUES(?,?,?,?)";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, vo.getName());
 		pstmt.setDouble(2, vo.getPrice());
@@ -157,7 +157,7 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 
 	@Override
 	public Integer findGoodsId() throws SQLException {
-		String sql = "SELECT goods_seq.currval FROM dual";
+		String sql = "SELECT last_insert_id()";
 		pstmt = conn.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 		if (rs.next()) {
